@@ -22,11 +22,10 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ConstructorTestException))]
         public void TestConstructors_DummyConstructorNotMapped()
         {
             var tester = new ConstructorTester(typeof(DummyConstructorNotMapped));
-            tester.TestConstructors(true);
+            Assert.That(() => tester.TestConstructors(true), Throws.TypeOf<ConstructorTestException>());
         }
 
         [Test]
@@ -45,11 +44,11 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ConstructorTestException), ExpectedMessage = "Cannot create an instance of the type 'TheJoyOfCode.QualityTools.Tests.ISomeInterface' for the parameter 'someInstance' in the .ctor(System.String, TheJoyOfCode.QualityTools.Tests.ISomeInterface, System.Object) for type TheJoyOfCode.QualityTools.Tests.DummyCtorAbstractParams")]
         public void TestConstructors_WithAbstractParams()
         {
             var tester = new ConstructorTester(typeof(DummyCtorAbstractParams));
-            tester.TestConstructors(true);
+            Assert.That(() => tester.TestConstructors(true), Throws.TypeOf<ConstructorTestException>(),
+                        "Cannot create an instance of the type 'TheJoyOfCode.QualityTools.Tests.ISomeInterface' for the parameter 'someInstance' in the .ctor(System.String, TheJoyOfCode.QualityTools.Tests.ISomeInterface, System.Object) for type TheJoyOfCode.QualityTools.Tests.DummyCtorAbstractParams");
         }
 
         [Test]
@@ -69,11 +68,10 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ConstructorTestException))]
         public void TestConstructors_TestDodgyConstructor()
         {
             var tester = new ConstructorTester(typeof(IncorrectConstructors));
-            tester.TestConstructors(true);
+            Assert.That(() => tester.TestConstructors(true), Throws.TypeOf<ConstructorTestException>());
         }
     }
 }

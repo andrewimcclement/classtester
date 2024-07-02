@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheJoyOfCode.QualityTools", "TheJoyOfCode.QualityTools\TheJoyOfCode.QualityTools.csproj", "{CE5FB6E9-39FE-4297-B2C4-E63749A60752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheJoyOfCode.QualityTools", "TheJoyOfCode.QualityTools\TheJoyOfCode.QualityTools.csproj", "{CE5FB6E9-39FE-4297-B2C4-E63749A60752}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheJoyOfCode.QualityTools.Tests", "TheJoyOfCode.QualityTools.Tests\TheJoyOfCode.QualityTools.Tests.csproj", "{822EBF45-8F18-4B68-9066-1E4701D2A99C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheJoyOfCode.QualityTools.Tests", "TheJoyOfCode.QualityTools.Tests\TheJoyOfCode.QualityTools.Tests.csproj", "{822EBF45-8F18-4B68-9066-1E4701D2A99C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheJoyOfCode.QualityTools.Tests.DummyProject", "TheJoyOfCode.QualityTools.Tests.DummyProject\TheJoyOfCode.QualityTools.Tests.DummyProject.csproj", "{5AE98DF2-F0ED-44C3-AC79-954A290B6EB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheJoyOfCode.QualityTools.Tests.DummyProject", "TheJoyOfCode.QualityTools.Tests.DummyProject\TheJoyOfCode.QualityTools.Tests.DummyProject.csproj", "{5AE98DF2-F0ED-44C3-AC79-954A290B6EB0}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution

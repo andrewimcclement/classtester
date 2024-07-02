@@ -14,11 +14,4 @@ using System.Runtime.CompilerServices;
 //------------------------------------------------------------------------------
 
 [assembly: ComVisibleAttribute(false)]
-[assembly: AssemblyVersionAttribute("1.1.2925.42952")]
-[assembly: AssemblyFileVersionAttribute("1.1.2925.42952")]
-[assembly: AssemblyCopyrightAttribute("Copyright theJoyOfCode.com 2012")]
-[assembly: AssemblyProductAttribute("ClassTester")]
-[assembly: AssemblyCompanyAttribute("theJoyOfCode.com")]
-[assembly: AssemblyConfigurationAttribute("release")]
-[assembly: AssemblyInformationalVersionAttribute("1.1.2925.42952")]
 

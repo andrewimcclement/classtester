@@ -131,6 +131,21 @@ namespace TheJoyOfCode.QualityTools
             }
         }
 
+        private class SomeRandomType1 { }
+        private class SomeRandomType2 { }
+        private class SomeRandomType3 { }
+        private class SomeRandomType4 { }
+        private class SomeRandomType5 { }
+        private class SomeRandomType6 { }
+        private class SomeRandomType7 { }
+
+        protected virtual Type GenerateNewType()
+        {
+            var types = new[] {typeof(SomeRandomType1), typeof(SomeRandomType2), typeof(SomeRandomType3),
+                               typeof(SomeRandomType4), typeof(SomeRandomType5), typeof(SomeRandomType6), typeof(SomeRandomType7)};
+            return types[_random.Next(7)];       
+        }
+        /*
         /// <summary>
         /// Compiles an entirely new Class (with a random name) and returns its System.Type representation
         /// </summary>
@@ -174,6 +189,6 @@ namespace TheJoyOfCode.QualityTools
             var result = Activator.CreateInstance(generatedType);
 
             return result.GetType();
-        }
+        }*/
     }
 }

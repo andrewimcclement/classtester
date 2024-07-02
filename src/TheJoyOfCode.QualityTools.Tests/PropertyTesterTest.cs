@@ -8,9 +8,12 @@
 
 using System;
 using System.Collections.Generic;
+
+using Moq;
+
 using NUnit.Framework;
+
 using TheJoyOfCode.QualityTools.Tests.TestSubjects;
-using Rhino.Mocks;
 
 namespace TheJoyOfCode.QualityTools.Tests
 {
@@ -18,11 +21,10 @@ namespace TheJoyOfCode.QualityTools.Tests
     public class PropertyTesterTest
     {
         [Test]
-        [ExpectedException(typeof (PropertyTestException))]
         public void TestProperties_BadProperty()
         {
             var tester = new PropertyTester(new DummyBadProperty());
-            tester.TestProperties();
+            Assert.That(tester.TestProperties, Throws.TypeOf<PropertyTestException>());
         }
 
         [Test]
@@ -42,18 +44,16 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof (InvalidOperationException))]
         public void TestProperties_CannotGenerateTwoDifferentValues()
         {
             var tester = new PropertyTester(new DummyUsesSameEquals());
-            tester.TestProperties();
+            Assert.That(tester.TestProperties, Throws.InvalidOperationException);
         }
 
         [Test]
-        [ExpectedException(typeof (ArgumentNullException))]
         public void TestProperties_ConstructorError()
         {
-            new PropertyTester(null);
+            Assert.That(() => new PropertyTester(null), Throws.ArgumentNullException);
         }
 
         [Test]
@@ -64,11 +64,10 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof (PropertyTestException))]
         public void TestProperties_NoEvent()
         {
             var tester = new PropertyTester(new DummyNoEvent());
-            tester.TestProperties();
+            Assert.That(tester.TestProperties, Throws.TypeOf<PropertyTestException>());
         }
 
         [Test]
@@ -105,23 +104,18 @@ namespace TheJoyOfCode.QualityTools.Tests
         [Test]
         public void TestProperties_UsingMock()
         {
-            var repository = new MockRepository();
-            var mock = repository.DynamicMock<IBasicProperties>();
-
-            Expect.Call(mock.GetSetProperty).Return("one");
-            Expect.Call(mock.GetOnlyProperty).Return("anyoldthing");
-            mock.SetOnlyProperty = "two";
-
-            repository.Replay(mock);
+            var mock = new Mock<IBasicProperties>();
+            mock.Setup(x => x.GetSetProperty).Returns("one");
+            mock.Setup(x => x.GetOnlyProperty).Returns("anyoldthing");
 
             var typeFactory = new CustomStringTypeFactory();
             typeFactory.ReturnValues.Enqueue("one");
             typeFactory.ReturnValues.Enqueue("two");
 
-            var tester = new PropertyTester(mock, typeFactory);
+            var tester = new PropertyTester(mock.Object, typeFactory);
             tester.IgnoredProperties.Add("ConstructorArguments");
             tester.TestProperties();
-            repository.Verify(mock);
+            mock.VerifyAll();
         }
 
         private class CustomStringTypeFactory : ITypeFactory

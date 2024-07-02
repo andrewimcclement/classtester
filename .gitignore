@@ -1,7 +1,18 @@
-_Resharper*
-*.user
-*.suo
-obj
-bin
-/build
-lib
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+# Visual Studio settings
+.vs/
+
+# IntelliJ settings.
+.idea/
+
+# These can appear under .csproj file locations
+obj/
+
+Target/
+Intermediate/
+Debug/
+bin/
+TestResults/

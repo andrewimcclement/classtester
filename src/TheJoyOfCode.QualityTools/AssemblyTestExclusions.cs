@@ -82,7 +82,11 @@ namespace TheJoyOfCode.QualityTools
 
             public override bool IsExcluded(Type type)
             {
-                if (type.Namespace == _namespace)
+                if (type.Namespace is null)
+                {
+                    return false;
+                }
+                else if (type.Namespace == _namespace)
                 {
                     return true;
                 }

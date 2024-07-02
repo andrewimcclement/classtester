@@ -18,8 +18,6 @@ namespace TheJoyOfCode.QualityTools.Tests
     [TestFixture]
     public class AssemblyTesterTest
     {
-       
-
         [Test]
         public void AssemblyTester_AllExcluded()
         {
@@ -29,17 +27,9 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void AssemblyTester_ConstructorNull()
         {
-            new AssemblyTester(null);
-        }
-
-        [Test]
-        [ExpectedException(typeof (ArgumentNullException))]
-        public void AssemblyTester_ConstructorError()
-        {
-            new AssemblyTester(null);
+            Assert.That(() => new AssemblyTester(null), Throws.ArgumentNullException);
         }
 
         [Test]
@@ -59,11 +49,10 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof (AssemblyTestException))]
         public void AssemblyTester_Self_WithoutExclusions()
         {
             var tester = new AssemblyTester(Assembly.GetExecutingAssembly());
-            tester.TestAssembly(true, true);
+            Assert.That(() => tester.TestAssembly(true, true), Throws.TypeOf<AssemblyTestException>());
         }
 
         [Test]
@@ -75,11 +64,10 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(AssemblyTestException))]
         public void AssemblyTester_FailNoExclusions()
         {
             var tester = new AssemblyTester(typeof(IncorrectConstructors).Assembly);
-            tester.TestAssembly(true, true);
+            Assert.That(() => tester.TestAssembly(true, true), Throws.TypeOf<AssemblyTestException>());
         }
 
         [Test]
@@ -122,19 +110,17 @@ namespace TheJoyOfCode.QualityTools.Tests
         }
 
         [Test]
-        [ExpectedException(typeof (AssemblyTestException))]
         public void AssemblyTester_TestQualityTools_WithoutExclusions()
         {
             var tester = new AssemblyTester(typeof(AssemblyTester).Assembly);
-            tester.TestAssembly(true, true);
+            Assert.That(() => tester.TestAssembly(true, true), Throws.TypeOf<AssemblyTestException>());
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void AssemblyTester_TestQualityTools_BothFalse()
         {
             var tester = new AssemblyTester(typeof(AssemblyTester).Assembly);
-            tester.TestAssembly(false, false);
+            Assert.That(() => tester.TestAssembly(false, false), Throws.ArgumentException);
         }
 
         [Test]
